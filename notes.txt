@@ -1,0 +1,39 @@
+Features:
+Users
+notification for plant watering, fertilizing,
+when best to propagate,
+built in compass and plant suggestion based on orientation
+can have up to 5 plants for free --> pay for unlmtd
+
+VUE:
+Component has three parts
+Output--> template with markup
+Functionality --> script tag that exports and returns a data method that stores the state and
+Style --> styling of page
+
+globally install @vue/cli
+
+main.js is the entry point to vue
+
+Templates--> where we lay out and define the template
+Component --> Component that uses the template and ends up showing up on the page
+
+v-bind: passing props to a component
+v-for="key in object"--> looping through data in your template
+  use v:bind when looping becuase the loop needs a unique identifyer
+
+in components object you "register" the templates that you have imported and want to use within the current template
+
+Adding conditions
+  Conditional class--> bind the class only if the condition is true
+  v-bind:class={'class name':object.property.condition}
+  v-bind:class={'isCompleted':todo.completed}
+
+Events in VUE
+v-on:change="markComplete" = Event listener
+
+If a child registers a change that was made, it needs to emit an event to the partent that has the data (or that communicated with the database). Based on which event was emitted, the parent component can execute the right function that reflects the event. ie child emits delete on click --> triggers delete function in parent
+
+v-model:
+
+create unique id with uuid (won't need that anymore when start using database)
