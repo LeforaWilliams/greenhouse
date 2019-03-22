@@ -24,6 +24,8 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+  background-color: #e6e0e0;
+  color: #113810;
 }
 .btn {
   display: inline-block;
