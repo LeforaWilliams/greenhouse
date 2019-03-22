@@ -2,11 +2,23 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { getPlants, addNewPlant, deletePlant } = require("./src/sql/db.js");
+const {
+  getPlants,
+  addNewPlant,
+  deletePlant,
+  registerUser
+} = require("./src/sql/db.js");
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("./public/index.html"));
+
+app.post("/register", (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
+  registerUser(firstName, lastName, email, password).then(data => {
+    res.send({ message: `Hello ${firstName} ${lastName}` });
+  });
+});
 
 app.get("/plants", (req, res) => {
   getPlants().then(plants => {

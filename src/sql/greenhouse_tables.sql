@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS user_plants;
 DROP TABLE IF EXISTS user;
 
--- CREATE TABLE users (
---   id SERIAL PRIMARY KEY,
---   name VARCHAR (168) NOT NULL,
---   last_name VARCHAR (168) NOT NULL,
---   email VARCHAR (168) NOT NULL,
---   password VARCHAR (168) NOT NULL
--- );
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR (168) NOT NULL,
+  last_name VARCHAR (168) NOT NULL,
+  email VARCHAR (168) NOT NULL,
+  password VARCHAR (168) NOT NULL
+);
 
 CREATE TABLE user_plants (
   id SERIAL PRIMARY KEY,
