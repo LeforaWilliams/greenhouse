@@ -29,6 +29,7 @@
       placeholder="Password"
       v-model="password"
     />
+    <div class="error" v-html="error" />
     <button @click="registerUser" type="button" name="button">Register</button>
   </div>
 </template>
@@ -43,23 +44,32 @@ export default {
       firstName: "Lefora",
       lastName: "Williams",
       email: "leo@mail.com",
-      password: ""
+      password: "",
+      error: null
     };
   },
 
   methods: {
     async registerUser() {
-      const { firstName, lastName, email, password } = this;
-      const response = await Auth.register({
-        firstName,
-        lastName,
-        email,
-        password
-      });
-      console.log(response.data);
+      try {
+        const { firstName, lastName, email, password } = this;
+        const res = await Auth.register({
+          firstName,
+          lastName,
+          email,
+          password
+        });
+        console.log(res.data);
+      } catch (error) {
+        this.error = error.response.data.err;
+      }
     }
   }
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.error {
+  color: red;
+}
+</style>

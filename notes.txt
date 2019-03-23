@@ -4,6 +4,7 @@ notification for plant watering, fertilizing,
 when best to propagate,
 built in compass and plant suggestion based on orientation
 can have up to 5 plants for free --> pay for unlmtd
+for registration have falling leaves when something goes wrong
 
 VUE:
 Component has three parts
