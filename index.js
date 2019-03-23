@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { regValidation } = require("./validation-policies.js");
 const {
   getPlants,
   addNewPlant,
@@ -13,11 +14,17 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("./public/index.html"));
 
-app.post("/register", (req, res) => {
+app.post("/register", regValidation, (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  registerUser(firstName, lastName, email, password).then(data => {
-    res.send({ message: `Hello ${firstName} ${lastName}` });
-  });
+  registerUser(firstName, lastName, email, password)
+    .then(data => {
+      res.send({
+        message: `Hello ${firstName} ${lastName}`
+      });
+    })
+    .catch(err => {
+      console.error("Error in REGISTER POST route in index.js", err);
+    });
 });
 
 app.get("/plants", (req, res) => {

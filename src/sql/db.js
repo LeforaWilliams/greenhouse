@@ -8,10 +8,10 @@ if (process.env.DATABASE_URL) {
 }
 const db = spicedPg(dbUrl);
 
-module.export.registerUser = (firstName, lastName, email, password) => {
+module.exports.registerUser = (firstName, lastName, email, password) => {
   return db.query(
     `INSERT INTO
-    users (first_name, last_name,email,password)
+    users (first_name, last_name, email, password)
     VALUES ($1, $2, $3, $4)
     RETURNING id `,
     [firstName, lastName, email, password]
