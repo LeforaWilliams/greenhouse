@@ -9,7 +9,7 @@
       v-model="email"
     />
     <input
-      type="text"
+      type="password"
       name="password"
       value=""
       placeholder="Password"
