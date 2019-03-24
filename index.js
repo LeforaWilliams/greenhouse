@@ -2,29 +2,66 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieSession = require("cookie-session");
+const secrets = require("./secrets.json");
+
 const { regValidation } = require("./validation-policies.js");
+const { hashPassword, checkPassword } = require("./encryption.js");
 const {
   getPlants,
   addNewPlant,
   deletePlant,
-  registerUser
+  registerUser,
+  loginUser
 } = require("./src/sql/db.js");
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [secrets.cookieSecret],
+    maxAge: 1000 * 60 * 60 * 24 * 90
+  })
+);
 app.use(express.static("./public/index.html"));
 
 app.post("/register", regValidation, (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  registerUser(firstName, lastName, email, password)
+  hashPassword(password)
+    .then(hash => {
+      return registerUser(firstName, lastName, email, hash);
+    })
     .then(data => {
-      res.send({
-        message: `Hello ${firstName} ${lastName}`
-      });
+      const { first_name, last_name, email } = req.body;
+      req.session.firstName = first_name;
+      req.session.lastName = last_name;
+      req.session.email = email;
+      req.session.id = data.rows[0].id;
+      res.status(200).json({ success: true });
     })
     .catch(err => {
       console.error("Error in REGISTER POST route in index.js", err);
+      res.status(400);
     });
+});
+
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  loginUser(email).then(data => {
+    return checkPassword(password, data.rows[0].password).then(checkResult => {
+      if (checkResult) {
+        const { id, first_name, last_name, email } = data.rows[0];
+        req.session.firstName = first_name;
+        req.session.lastName = last_name;
+        req.session.email = email;
+        req.session.id = id;
+        res.status(200).json({ success: true });
+      } else {
+        res.status(403).json({ success: false });
+      }
+    });
+  });
 });
 
 app.get("/plants", (req, res) => {

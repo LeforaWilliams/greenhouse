@@ -68,8 +68,4 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
-.error {
-  color: red;
-}
-</style>
+<style lang="css" scoped></style>

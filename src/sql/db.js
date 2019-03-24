@@ -18,6 +18,15 @@ module.exports.registerUser = (firstName, lastName, email, password) => {
   );
 };
 
+module.exports.loginUser = email => {
+  return db.query(
+    `SELECT * FROM
+    users
+    WHERE email = ($1)`,
+    [email]
+  );
+};
+
 module.exports.getPlants = () => {
   return db.query(`SELECT * from user_plants`);
 };

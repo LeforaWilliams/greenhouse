@@ -38,4 +38,8 @@ body {
 .btn:hover {
   background: #666;
 }
+
+.error {
+  color: red;
+}
 </style>
