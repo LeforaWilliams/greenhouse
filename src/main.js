@@ -1,7 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router";
-
+import { sync } from "vuex-router-sync";
+import store from "./store/store";
 // C O M P O N E N T S
 import Register from "./views/Register.vue";
 import Login from "./views/Login.vue";
@@ -39,6 +40,8 @@ const router = new VueRouter({
 });
 
 Vue.config.productionTip = false;
+
+sync(store, router);
 
 new Vue({
   router,
