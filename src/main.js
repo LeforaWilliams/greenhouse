@@ -3,6 +3,7 @@ import App from "./App.vue";
 import VueRouter from "vue-router";
 import { sync } from "vuex-router-sync";
 import store from "./store/store";
+
 // C O M P O N E N T S
 import Register from "./views/Register.vue";
 import Login from "./views/Login.vue";
@@ -45,5 +46,6 @@ sync(store, router);
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");
