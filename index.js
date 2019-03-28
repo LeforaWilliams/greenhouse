@@ -33,12 +33,16 @@ app.post("/register", regValidation, (req, res) => {
       return registerUser(firstName, lastName, email, hash);
     })
     .then(data => {
-      const { first_name, last_name, email } = req.body;
-      req.session.firstName = first_name;
-      req.session.lastName = last_name;
+      req.session.firstName = firstName;
+      req.session.lastName = lastName;
       req.session.email = email;
       req.session.id = data.rows[0].id;
-      res.status(200).json({ success: true });
+
+      res.status(200).json({
+        success: true,
+        user: req.session.firstName,
+        logInId: req.session.id
+      });
     })
     .catch(err => {
       console.error("Error in REGISTER POST route in index.js", err);
@@ -49,14 +53,19 @@ app.post("/register", regValidation, (req, res) => {
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   loginUser(email).then(data => {
-    return checkPassword(password, data.rows[0].password).then(checkResult => {
-      if (checkResult) {
+    return checkPassword(password, data.rows[0].password).then(response => {
+      if (response) {
         const { id, first_name, last_name, email } = data.rows[0];
         req.session.firstName = first_name;
         req.session.lastName = last_name;
         req.session.email = email;
         req.session.id = id;
-        res.status(200).json({ success: true });
+
+        res.status(200).json({
+          success: true,
+          user: req.session.firstName,
+          logInId: req.session.id
+        });
       } else {
         res.status(403).json({ success: false });
       }

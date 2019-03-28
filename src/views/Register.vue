@@ -60,6 +60,8 @@ export default {
           password
         });
         console.log(res.data);
+        this.$store.dispatch("setToken", res.data.logInId);
+        this.$store.dispatch("setUser", res.data.user);
       } catch (error) {
         this.error = error.response.data.err;
       }

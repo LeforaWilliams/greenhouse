@@ -35,7 +35,10 @@ export default {
       try {
         const { email, password } = this;
         const res = await Auth.login({ email, password });
+        //res should be session userID
         console.log(res.data);
+        this.$store.dispatch("setToken", res.data.id);
+        this.$store.dispatch("setUser", res.data.user);
       } catch (error) {
         this.error = error.response.data.err;
       }
