@@ -43,9 +43,9 @@ export default {
   name: "Register",
   data() {
     return {
-      firstName: "Lefora",
-      lastName: "Williams",
-      email: "leo@mail.com",
+      firstName: "",
+      lastName: "",
+      email: "",
       password: "",
       error: null
     };
@@ -61,9 +61,9 @@ export default {
           email,
           password
         });
-        console.log(res.data);
         this.$store.dispatch("setToken", res.data.logInId);
         this.$store.dispatch("setUser", res.data.user);
+        this.$router.replace("/");
       } catch (error) {
         this.error = error.response.data.err;
       }
