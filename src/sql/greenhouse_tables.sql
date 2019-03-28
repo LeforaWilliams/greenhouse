@@ -9,6 +9,7 @@ CREATE TABLE users (
   password VARCHAR (168) NOT NULL
 );
 
+-- add reference to user id 
 CREATE TABLE user_plants (
   id SERIAL PRIMARY KEY,
   common_name VARCHAR (168) NOT NULL,
