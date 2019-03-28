@@ -30,6 +30,11 @@ body {
   height: 100%;
 }
 
+h1,
+button {
+  text-transform: uppercase;
+}
+
 button {
   cursor: pointer;
 }

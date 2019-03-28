@@ -15,7 +15,9 @@
       placeholder="Password"
       v-model="password"
     />
-    <button type="button" name="button" @click="loginUser">Login</button>
+    <button class="btn" type="button" name="button" @click="loginUser">
+      Login
+    </button>
   </div>
 </template>
 
@@ -47,4 +49,32 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+h1 {
+  margin: 50px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+background: none;
+border: none;
+border-bottom: 1px solid grey;
+padding-bottom: 10px;
+margin-bottom: 10px;
+font-size: 28px;
+transition: all 0.3s ease-in;
+}
+
+input:focus {
+  border-bottom-color: transparent;
+  outline: none;
+}
+
+button {
+  margin-top: 20px;
+}
+</style>

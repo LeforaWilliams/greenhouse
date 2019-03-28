@@ -5,14 +5,14 @@
       type="text"
       name="firstName"
       value=""
-      placeholder="Firstname"
+      placeholder="First Name"
       v-model="firstName"
     />
     <input
       type="text"
       name="lastName"
       value=""
-      placeholder="Lastname"
+      placeholder="Last Name"
       v-model="lastName"
     />
     <input
@@ -85,7 +85,7 @@ h1 {
 input {
 background: none;
 border: none;
-border-bottom: 2px solid grey;
+border-bottom: 1px solid grey;
 padding-bottom: 10px;
 margin-bottom: 10px;
 font-size: 28px;
