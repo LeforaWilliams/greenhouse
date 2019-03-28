@@ -26,6 +26,8 @@ body {
   line-height: 1.4;
   background-color: #e6e0e0;
   color: #113810;
+  width: 100%;
+  height: 100%;
 }
 
 button {

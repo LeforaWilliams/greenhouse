@@ -30,7 +30,9 @@
       v-model="password"
     />
     <div class="error" v-html="error" />
-    <button @click="registerUser" type="button" name="button">Register</button>
+    <button class="btn" @click="registerUser" type="button" name="button">
+      Register
+    </button>
   </div>
 </template>
 
@@ -70,4 +72,32 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+h1 {
+  margin: 50px;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+background: none;
+border: none;
+border-bottom: 2px solid grey;
+padding-bottom: 10px;
+margin-bottom: 10px;
+font-size: 28px;
+transition: all 0.3s ease-in;
+}
+
+input:focus {
+  border-bottom-color: transparent;
+  outline: none;
+}
+
+button {
+  margin-top: 20px;
+}
+</style>
